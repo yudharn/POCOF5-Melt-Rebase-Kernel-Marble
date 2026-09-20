@@ -124,7 +124,7 @@ Check the Actions tab or the workflow file itself if you want to see exactly how
 
 ---
 
-## Disclaimer
+## ⚠️ Disclaimer
 
 This is a custom kernel, **not official** from Xiaomi or Pzqqt. Install at your own risk, flashing a kernel always carries some chance of a bootloop. Always back up your stock boot and vendor_boot images before trying it.
 
