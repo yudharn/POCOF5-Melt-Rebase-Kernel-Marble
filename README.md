@@ -97,12 +97,6 @@ All four get built in parallel on every release, so just grab the zip for whiche
 
 ---
 
-## Build and Release Process
-
-Builds run automatically through **GitHub Actions** across the whole root manager matrix, with periodic syncs from upstream Melt Kernel. Release notes also list the exact NoMount commit used for that build, so you always know which patch version you're flashing.
-
----
-
 ## Installation
 
 1. Download the **Kernel** zip for your chosen root manager from the **Releases** page.
