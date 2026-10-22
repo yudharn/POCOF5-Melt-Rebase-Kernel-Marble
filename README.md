@@ -6,18 +6,17 @@
 
 ### Custom GKI Kernel for the Xiaomi POCO F5 / Redmi Note 12 Turbo
 
-A rebase of **Melt Kernel** ([Pzqqt](https://github.com/Pzqqt)) for the **marble** platform, adding support for four different root managers plus a batch of modern kernel features: SuSFS, Re-Kernel, Baseband-guard, NoMount, and Droidspaces.
+A rebase of **Melt Kernel** ([Pzqqt](https://github.com/Pzqqt)) for the **marble** platform, adding support for three different root managers plus a batch of modern kernel features: SuSFS, Re-Kernel, Baseband-guard, NoMount, and Droidspaces.
 
 ![Device](https://img.shields.io/badge/Device-marble-blue?style=flat-square)
 ![Kernel](https://img.shields.io/badge/Kernel-GKI_5.10-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL--2.0-lightgrey?style=flat-square)
 
 ![KernelSU](https://img.shields.io/badge/KernelSU-supported-success?style=flat-square)
-![KoWSU](https://img.shields.io/badge/KoWSU-supported-success?style=flat-square)
 ![KernelSU--Next](https://img.shields.io/badge/KernelSU--Next-supported-success?style=flat-square)
-![ReSukiSU](https://img.shields.io/badge/ReSukiSU-supported-success?style=flat-square)
+![BakaSU](https://img.shields.io/badge/BakaSU-supported-success?style=flat-square)
 ![SUSFS](https://img.shields.io/badge/SUSFS-integrated-success?style=flat-square)
-![ROM](https://img.shields.io/badge/ROM-HyperOS%2FColorOS%2FOxygenOS%2FAospaPARANOID-orange?style=flat-square)
+![ROM](https://img.shields.io/badge/ROM-HyperOS%2FColorOS%2FOxygenOS%2FAOSPA_PARANOID-orange?style=flat-square)
 
 [![Telegram](https://img.shields.io/badge/Telegram-meltrebase-26A5E4?style=flat-square&logo=telegram&logoColor=white)](https://t.me/meltrebase)
 
@@ -31,7 +30,6 @@ A rebase of **Melt Kernel** ([Pzqqt](https://github.com/Pzqqt)) for the **marble
 - [Device Specifications](#device-specifications)
 - [Key Features](#key-features)
 - [Supported Root Managers](#supported-root-managers)
-- [Build and Release Process](#build-and-release-process)
 - [Installation](#installation)
 - [Building from Source](#building-from-source)
 - [Disclaimer](#disclaimer)
@@ -42,9 +40,9 @@ A rebase of **Melt Kernel** ([Pzqqt](https://github.com/Pzqqt)) for the **marble
 
 ## About This Project
 
-**Melt Rebase** is a custom kernel for marble (Xiaomi POCO F5 / Redmi Note 12 Turbo), built on top of the `melt-rebase` branch of **Melt Kernel** by [Pzqqt](https://github.com/Pzqqt), still the most widely used open-source kernel for this device.
+**Melt Rebase** is a custom kernel for marble (Xiaomi POCO F5 / Redmi Note 12 Turbo), built on the `melt-rebase` branch of **Melt Kernel** by [Pzqqt](https://github.com/Pzqqt), still the most widely used open-source kernel for this device.
 
-Pzqqt intentionally keeps SUSFS integration and third-party root manager support out of the official source, so that's what this rebase fills in. On top of Melt Kernel you get four root manager variants to choose from, kernel-level root hiding through SUSFS, Baseband-guard locking down critical partitions, NoMount handling filesystem redirection, Droidspaces for running Linux containers, and Re-Kernel for freeze/thaw event reporting. Everything ships as ready-to-flash zips, built automatically.
+Pzqqt intentionally keeps SUSFS integration and third-party root manager support out of the official source, so this rebase fills that gap. On top of Melt Kernel you get three root manager variants to choose from, kernel-level root hiding through SUSFS, Baseband-guard protecting critical partitions, NoMount handling filesystem redirection, Droidspaces for running Linux containers, and Re-Kernel for freeze/thaw event reporting. Everything ships as ready-to-flash zips, built automatically.
 
 ---
 
@@ -59,7 +57,7 @@ Pzqqt intentionally keeps SUSFS integration and third-party root manager support
 | Base source | [Pzqqt/android_kernel_xiaomi_marble](https://github.com/Pzqqt/android_kernel_xiaomi_marble) @ branch `melt-rebase` |
 | Toolchain | LLVM/Clang |
 | Packaging | AnyKernel3 |
-| ROM compatibility | HyperOS, ColorOS, AOSPA PARANOID and OxygenOS |
+| ROM compatibility | HyperOS, ColorOS, OxygenOS, AOSPA PARANOID |
 
 ---
 
@@ -87,11 +85,10 @@ Kernel-level container namespace support from [ravindu644](https://github.com/ra
 | Root Manager | Base | Notes |
 |---|---|---|
 | **KernelSU** (Official) | [tiann/KernelSU](https://github.com/tiann/KernelSU) | The original KernelSU implementation. |
-| **KernelSU-KoWSU** | [deepongi-labs](https://github.com/deepongi-labs/KernelSU-KoWSU) | Personal fork focused on LKM support. |
 | **KernelSU-Next** | [KernelSU-Next team](https://github.com/KernelSU-Next) | Fork with broader kernel compatibility and App Profile. |
-| **ReSukiSU** | [ReSukiSU team](https://github.com/ReSukiSU) | SukiSU Ultra derivative, focused on stability and multi-manager support. |
+| **BakaSU** | [Baka-SU/BakaSU](https://github.com/Baka-SU/BakaSU) | Formerly ReSukiSU. SukiSU-Ultra derivative with multi-manager support. |
 
-All four get built in parallel on every release, so just grab the zip for whichever root manager you use from the **Releases** page.
+All three get built in parallel on every release, so just grab the zip for whichever root manager you use from the **Releases** page.
 
 > ⚠️ Don't install more than one root manager at a time on the same device.
 
@@ -100,10 +97,10 @@ All four get built in parallel on every release, so just grab the zip for whiche
 ## Installation
 
 1. Download the **Kernel** zip for your chosen root manager from the **Releases** page.
-2. Back up your stock boot and vendor_boot images/partitions before doing anything.
+2. Back up your stock boot and vendor_boot images before doing anything.
 3. Flash the zip through a custom recovery (TWRP/OrangeFox).
 4. Reboot the device.
-5. Install the matching manager app (KernelSU Manager, KernelSU-Next Manager, etc.) and finish the root setup.
+5. Install the matching manager app (KernelSU Manager, KernelSU-Next Manager, BakaSU Manager) and finish the root setup.
 
 ---
 
@@ -111,16 +108,16 @@ All four get built in parallel on every release, so just grab the zip for whiche
 
 1. Clone this repo on the `melt-rebase` branch.
 2. Set up the LLVM/Clang toolchain and a standard GKI kernel build environment.
-3. Adjust the marble defconfig for whichever root manager you're targeting.
+3. Adjust the marble defconfig for the root manager you're targeting.
 4. Build the kernel image, then package it with **AnyKernel3**.
 
-Check the Actions tab or the workflow file itself if you want to see exactly how the official multi-manager builds get put together.
+See the Actions tab or the workflow file for exactly how the official multi-manager builds are put together.
 
 ---
 
 ## ⚠️ Disclaimer
 
-This is a custom kernel, **not official** from Xiaomi or Pzqqt. Install at your own risk, flashing a kernel always carries some chance of a bootloop. Always back up your stock boot and vendor_boot images before trying it.
+This is a custom kernel, **not official** from Xiaomi or Pzqqt. Install at your own risk; flashing a kernel always carries some chance of a bootloop. Always back up your stock boot and vendor_boot images first.
 
 Report issues related to SUSFS, NoMount, or any third-party root manager **in this repository**, not to upstream Melt Kernel or each feature's original project.
 
@@ -128,17 +125,14 @@ Report issues related to SUSFS, NoMount, or any third-party root manager **in th
 
 ## Credits and Acknowledgments
 
-This wouldn't exist without the work of:
-
 **Kernel Source**
 - [Pzqqt](https://github.com/Pzqqt): Melt Kernel author, upstream source and ongoing maintenance for marble
 - [Xiaomi/MIUI kernel source maintainers](https://github.com/MiCode): base vendor kernel source
 
 **Root Managers**
 - [tiann](https://github.com/tiann): KernelSU
-- [deepongi-labs](https://github.com/deepongi-labs): KernelSU-KoWSU
 - [KernelSU-Next team](https://github.com/KernelSU-Next): KernelSU-Next
-- [ReSukiSU team](https://github.com/ReSukiSU): ReSukiSU
+- [BakaSU team](https://github.com/Baka-SU): BakaSU
 
 **Kernel Features**
 - [simonpunk](https://gitlab.com/simonpunk): `susfs4ksu` patch (SUSFS)
