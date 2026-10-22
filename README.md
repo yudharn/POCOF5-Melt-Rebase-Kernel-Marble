@@ -59,7 +59,7 @@ Pzqqt intentionally keeps SUSFS integration and third-party root manager support
 | Base source | [Pzqqt/android_kernel_xiaomi_marble](https://github.com/Pzqqt/android_kernel_xiaomi_marble) @ branch `melt-rebase` |
 | Toolchain | LLVM/Clang |
 | Packaging | AnyKernel3 |
-| ROM compatibility | HyperOS, ColorOS and OxygenOS |
+| ROM compatibility | HyperOS, ColorOS, AOSPA PARANOID and OxygenOS |
 
 ---
 
